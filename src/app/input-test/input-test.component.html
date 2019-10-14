@@ -1,0 +1,30 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+
+	<div>
+		<label
+      [ngClass]=
+      "{'err-label': this.contactForm.get(inputControlName).hasError('required') && this.contactForm.get(inputControlName).touched && this.contactForm.get(inputControlName).touched,'succ-label':!this.contactForm.get(inputControlName).hasError('required') && this.contactForm.get(inputControlName).touched && !this.contactForm.get(inputControlName).pristine}"
+    >Label 1</label>
+		<input
+      [ngClass]=
+      "{'err-input': this.contactForm.get(inputControlName).hasError('required') && this.contactForm.get(inputControlName).touched && this.contactForm.get(inputControlName).touched,'succ-input':!this.contactForm.get(inputControlName).hasError('required') && this.contactForm.get(inputControlName).touched && !this.contactForm.get(inputControlName).pristine}"
+      [formControlName]="inputControlName">
+  </div>
+
+</form>
+
+{{ this.contactForm.value | json }}
+
+<!-- {{ this.contactForm.name?.errors | json }} -->
+
+<br>
+req -- {{this.contactForm.get('name').hasError('required')}}
+<br>
+touched -- {{this.contactForm.get('name').touched}}
+<br>
+pristine -- {{this.contactForm.get('name').pristine}}
+
+
+<div class="error" *ngIf="this.contactForm.get('name').hasError('required') && this.contactForm.get('name').touched">
+	Name is required
+</div>
